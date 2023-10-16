@@ -8,8 +8,44 @@
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
-<body>
+<body class="bs-body-color">
+  <nav class="navbar navbar-expand-md bg-primary mb-4">
+    <div class="container-fluid justify-content-center">
+      <a class="navbar-brand" href="#">
+        <img height="32" src="img/pokemon_logo.svg" alt="Pokedex">
+      </a>
+    </div>
+  </nav>
+
+  <main class="container mb-5">
+    <div class="cartas">
+      <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <!-- <div class="carta card shadow-sm">
+          <img src="#" alt="..." class="card-img-top">
+          <div class="card-body">
+            <h3 class="card-title">Lorem, ipsum dolor.</h3>
+            <h4 class="card-subtitle h6">
+              <span class="badge bg-secondary">...</span>
+            </h4>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur.</p>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </main>
+
+  <nav aria-label="Cambiar páginas">
+    <ul class="pagination justify-content-center">
+      <li class="page-item"><a class="page-link disabled" href="#" tabindex="-1">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+
   <script src="src/index.js"></script>
+  <!-- <script src="src/prueba.js"></script> -->
 </body>
 
 </html>

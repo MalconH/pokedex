@@ -1,6 +1,6 @@
-function cargarPokemones(offset, cantidad) {
+async function cargarPokemones(offset, cantidad) {
     for (let i = 1; i <= cantidad; i++) {
-        obtenerPokemon(i, offset).then(respuestaPokemon => {
+        await obtenerPokemon(i, offset).then(respuestaPokemon => {
             const {
                 name: nombrePokemon,
                 types: tipos,
@@ -12,16 +12,17 @@ function cargarPokemones(offset, cantidad) {
             crearCartaPokemon(
                 nombrePokemon,
                 urlPokemon,
-                tipos.map((item) => item.type.name));
+                tipos.map((item) => item.type.name)
+            );
         });
     }
-
 }
 
 function obtenerPokemon(id, offset = 0) {
     const URL_BASE = "https://pokeapi.co/api/v2/";
 
-    return fetch(`${URL_BASE}pokemon/${id + offset}`).then(respuesta => respuesta.json());
+    return fetch(`${URL_BASE}pokemon/${id + offset}`)
+        .then(respuesta => respuesta.json());
 }
 
 function crearCartaPokemon(nombre, urlImagen, tipos) {
@@ -32,7 +33,6 @@ function crearCartaPokemon(nombre, urlImagen, tipos) {
     const $nombrePokemon = $carta.querySelector("h3.card-title");
     const $imagenPokemon = $carta.querySelector("img.card-img-top");
     const $tiposPokemon = $carta.querySelectorAll(".card-subtitle .badge");
-    $contenedorCartas.appendChild($carta);
 
     $nombrePokemon.textContent = mayusculaEnPrimaLetra(nombre);
     $imagenPokemon.src = urlImagen;

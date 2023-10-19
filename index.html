@@ -36,16 +36,21 @@
 
   <nav aria-label="Cambiar páginas">
     <ul class="pagination justify-content-center">
-      <li class="page-item"><a class="page-link disabled" href="#" tabindex="-1">Previous</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      <li class="page-item"><a class="page-link disabled" href="#" data-indice="anterior" tabindex="-1">Anterior</a>
+      </li>
+
+      <li class="page-item"><a class="page-link active" href="#" data-indice="1">1</a></li>
+      <li class="page-item"><a class="page-link" href="#" data-indice="2">2</a></li>
+      <li class="page-item"><a class="page-link" href="#" data-indice="3">3</a></li>
+      <li class="page-item"><a class="page-link" href="#" data-indice="4">4</a></li>
+      <li class="page-item"><a class="page-link" href="#" data-indice="5">5</a></li>
+
+      <li class="page-item"><a class="page-link" href="#" data-indice="siguiente">Siguiente</a></li>
     </ul>
   </nav>
 
   <script src="src/index.js"></script>
-  <!-- <script src="src/prueba.js"></script> -->
+  <script src="src/paginacion.js"></script>
 </body>
 
 </html>

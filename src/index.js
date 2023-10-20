@@ -46,10 +46,12 @@ function crearCartaPokemon(nombre, urlImagen, tipos, id) {
     if (tipos.length > 1) {
         tipos.forEach((tipo, i) => {
             $tiposPokemon[i].textContent = tipo;
+            $tiposPokemon[i].classList.remove("bg-secondary");
             $tiposPokemon[i].classList.add(tipo);
         });
     } else {
         $tiposPokemon[0].textContent = tipos;
+        $tiposPokemon[0].classList.remove("bg-secondary");
         $tiposPokemon[0].classList.add(tipos);
         $tiposPokemon[1].remove();
     }

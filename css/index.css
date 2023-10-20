@@ -3,6 +3,11 @@
   pointer-events: none;
 }
 
+.pokemon-imagen {
+  max-height: 20rem;
+  object-fit: contain;
+}
+
 .bug {
   background-color: #cee027;
 }

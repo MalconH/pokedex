@@ -1,0 +1,5 @@
+/* Evita que al querer mostrar el modal, el target sea un descendiente de la carta */
+.carta * {
+  pointer-events: none;
+}
+

@@ -2,6 +2,7 @@ async function cargarPokemones(offset, cantidad) {
     for (let i = 1; i <= cantidad; i++) {
         await obtenerPokemon(i, offset).then(respuestaPokemon => {
             const {
+                id: id,
                 name: nombrePokemon,
                 types: tipos,
                 sprites: { other: { "official-artwork": {
@@ -12,7 +13,8 @@ async function cargarPokemones(offset, cantidad) {
             crearCartaPokemon(
                 nombrePokemon,
                 urlPokemon,
-                tipos.map((item) => item.type.name)
+                tipos.map((item) => item.type.name),
+                id
             );
         });
     }
@@ -25,7 +27,7 @@ function obtenerPokemon(id, offset = 0) {
         .then(respuesta => respuesta.json());
 }
 
-function crearCartaPokemon(nombre, urlImagen, tipos) {
+function crearCartaPokemon(nombre, urlImagen, tipos, id) {
     const $carta = crearCarta();
 
     // Selecciono los elementos para los datos del pokemon
@@ -34,6 +36,7 @@ function crearCartaPokemon(nombre, urlImagen, tipos) {
     const $imagenPokemon = $carta.querySelector("img.card-img-top");
     const $tiposPokemon = $carta.querySelectorAll(".card-subtitle .badge");
 
+    $carta.setAttribute("data-pokemon-id", id);
     $nombrePokemon.textContent = mayusculaEnPrimaLetra(nombre);
     $imagenPokemon.src = urlImagen;
     $imagenPokemon.alt = `Arte original del pokemon ${nombre}`;

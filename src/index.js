@@ -184,6 +184,14 @@ function cargarDatosModal(nombre, imagen, tipos, pesoKG, alturaMetros, estadisti
 
 }
 
+function hectogramosAKG(hectogramo) {
+    return hectogramo / 10;
+}
+
+function decimetrosAM(decimetros) {
+    return decimetros / 10;
+}
+
 
 
 function inicializar() {

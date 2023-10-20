@@ -24,6 +24,81 @@
     </div>
   </main>
 
+  <!-- Modal -->
+  <div class="modal fade" id="modal-pokemon" tabindex="-1" aria-labelledby="modal-pokemon-titulo" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title fs-5" id="modal-pokemon-titulo">Modal title</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <!-- Cuerpo del modal con datos del pokemon -->
+          <div class="container-fluid">
+            <div class="row">
+              <img src="" alt="pokemon" class="pokemon-imagen">
+            </div>
+            <hr>
+            <div class="row mb-3">
+              <div class="col-4">
+                <h6>Peso</h6>
+                <p class="pokemon-peso">55.5kg</p>
+              </div>
+
+              <div class="col-4">
+                <h6>Altura</h6>
+                <p class="pokemon-altura">55.5kg</p>
+              </div>
+
+              <div class="col-4">
+                <h6>Tipos</h6>
+                <p class="pokemon-tipo badge bg-secondary">Lorem</p>
+                <p class="pokemon-tipo badge bg-secondary">Lorem2</p>
+              </div>
+
+            </div>
+            <h5>Estadisticas base</h5>
+            <div class="row row-cols-3 mb-2 align-items-center">
+
+              <div class="hp text-center p-1">
+                <h6 class="hp-titulo mb-2">Vida</h6>
+                <p class="hp-valor">-</p>
+              </div>
+
+              <div class="attack text-center p-1">
+                <h6 class="attack-titulo mb-2">Ataque</h6>
+                <p class="attack-valor">-</p>
+              </div>
+
+              <div class="defense text-center p-1">
+                <h6 class="defense-titulo mb-2">Defensa</h6>
+                <p class="defense-valor">-</p>
+              </div>
+
+              <div class="speed text-center p-1">
+                <h6 class="speed-titulo mb-2">Velocidad</h6>
+                <p class="speed-valor">-</p>
+              </div>
+
+              <div class="special-attack text-center p-1">
+                <h6 class="special-attack-titulo mb-2">Ataque especial</h6>
+                <p class="special-attack-valor">-</p>
+              </div>
+
+              <div class="special-defense text-center p-1">
+                <h6 class="special-defense-titulo mb-2">Defensa especial</h6>
+                <p class="special-defense-valor">-</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
   <nav aria-label="Cambiar páginas">
     <ul class="pagination justify-content-center">
       <li class="page-item"><a class="page-link disabled" href="#" data-indice="anterior" tabindex="-1">Anterior</a>
@@ -39,8 +114,9 @@
     </ul>
   </nav>
 
-  <script src="src/index.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="src/paginacion.js"></script>
+  <script src="src/index.js"></script>
 </body>
 
 </html>

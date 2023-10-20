@@ -29,6 +29,8 @@ function obtenerPokemon(id, offset = 0) {
 
 function crearCartaPokemon(nombre, urlImagen, tipos, id) {
     const $carta = crearCarta();
+    const $contenedorCarta = document.createElement("div");
+    $contenedorCarta.className = "col";
 
     // Selecciono los elementos para los datos del pokemon
     const $contenedorCartas = document.querySelector(".cartas .row");
@@ -52,12 +54,12 @@ function crearCartaPokemon(nombre, urlImagen, tipos, id) {
         $tiposPokemon[1].remove();
     }
 
-    $contenedorCartas.appendChild($carta);
+    $contenedorCarta.appendChild($carta);
+    $contenedorCartas.appendChild($contenedorCarta);
 }
 
 function crearCarta() {
     const htmlCarta = `
-        <div class="carta card shadow-sm">
           <img src="#" alt="..." class="card-img-top">
            <div class="card-body">
                <h3 class="card-title">Lorem, ipsum dolor.</h3>
@@ -65,14 +67,13 @@ function crearCarta() {
                     <span class="badge bg-secondary"></span>
                     <span class="badge bg-secondary"></span>
                 </h4>
-            </div>
-        </div>`;
+            </div>`;
 
-    const $contenedor = document.createElement("div");
-    $contenedor.innerHTML = htmlCarta;
-    $contenedor.className = "col";
+    const $carta = document.createElement("div");
+    $carta.innerHTML = htmlCarta;
+    $carta.className = "carta card shadow-sm";
 
-    return $contenedor;
+    return $carta;
 }
 
 function mayusculaEnPrimaLetra(palabra) {

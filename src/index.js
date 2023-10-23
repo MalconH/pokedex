@@ -102,7 +102,9 @@ function borrarPokemonesAnteriores() {
 // Modal
 document.querySelector(".cartas").onclick = function (e) {
     const idPokemon = Number(e.target.getAttribute("data-pokemon-id"));
-    mostrarModalPokemon(idPokemon);
+    if (idPokemon !== 0) {
+        mostrarModalPokemon(idPokemon);
+    }
 };
 
 function mostrarModalPokemon(idPokemon) {

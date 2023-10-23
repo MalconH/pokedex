@@ -168,6 +168,7 @@ function cargarDatosModal(nombre, imagen, tipos, pesoKG, alturaMetros, estadisti
     }));
 
     // Carga los tipos
+    resetearClasesTiposPokemonModal();
     if (tipos.length > 1) {
         tipos.forEach((tipo, i) => {
             $tiposPokemon[i].textContent = tipo;
@@ -178,7 +179,7 @@ function cargarDatosModal(nombre, imagen, tipos, pesoKG, alturaMetros, estadisti
         $tiposPokemon[0].textContent = tipos;
         $tiposPokemon[0].classList.remove("bg-secondary");
         $tiposPokemon[0].classList.add(tipos);
-        $tiposPokemon[1].remove();
+        $tiposPokemon[1].classList.add("d-none");
     }
 
     $titulo.textContent = nombre;
@@ -195,7 +196,11 @@ function decimetrosAM(decimetros) {
     return decimetros / 10;
 }
 
-
+function resetearClasesTiposPokemonModal() {
+    document.querySelectorAll(".pokemon-tipo").forEach((tipo) => {
+        tipo.className = "pokemon-tipo badge bg-secondary";
+    });
+}
 
 function inicializar() {
     cambiarPagina(1);

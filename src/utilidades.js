@@ -1,4 +1,4 @@
-export function mayusculaEnPrimaLetra(palabra) {
+export function mayusculaEnPrimeraLetra(palabra) {
   const primeraLetra = palabra.slice(0, 1).toUpperCase();
   return primeraLetra + palabra.slice(1, palabra.length);
 }

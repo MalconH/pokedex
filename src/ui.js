@@ -1,4 +1,6 @@
-function crearCartasVacias(cantidad) {
+import { mayusculaEnPrimeraLetra } from './utilidades.js';
+
+export function crearCartasVacias(cantidad) {
   for (let i = 0; i < cantidad; i++) {
     const $carta = document.createElement('div');
     const htmlCarta = `
@@ -22,7 +24,7 @@ function crearCartasVacias(cantidad) {
   }
 }
 
-function cargarDatosPokemon(nombre, tipos, urlSprite, id, indice) {
+export function cargarDatosPokemon(nombre, tipos, urlSprite, id, indice) {
   const $carta = document.querySelectorAll('.carta')[indice];
   const $imagen = $carta.querySelector('.card-img-top');
   const $nombre = $carta.querySelector('.card-title');
@@ -33,7 +35,7 @@ function cargarDatosPokemon(nombre, tipos, urlSprite, id, indice) {
   $imagen.alt = `Arte oficial del Pokemon ${nombre}`;
   $imagen.src = urlSprite;
 
-  $nombre.textContent = mayusculaEnPrimaLetra(nombre);
+  $nombre.textContent = mayusculaEnPrimeraLetra(nombre);
 
   tipos.forEach((tipo, i) => {
     $tipos[i].textContent = tipo;
@@ -41,7 +43,7 @@ function cargarDatosPokemon(nombre, tipos, urlSprite, id, indice) {
   });
 }
 
-function borrarPokemonesAnteriores() {
+export function borrarPokemonesAnteriores() {
   document.querySelectorAll('.col').forEach((carta) => {
     carta.remove();
   });

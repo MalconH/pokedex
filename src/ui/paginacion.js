@@ -1,9 +1,19 @@
+import {
+  crearCartasVacias,
+  borrarPokemonesAnteriores,
+  cargarDatosPokemon,
+} from '../ui.js';
+
+import obtenerPokemon from '../pokeapi.js';
+
+import { mayusculaEnPrimeraLetra } from '../utilidades.js';
+
 let indicePaginas = [1, 2, 3, 4, 5];
 let indiceActual = 1;
 const INDICE_MINIMO = 1;
 const INDICE_MAXIMO = 99;
 
-function cambiarPagina(pagina) {
+export function cambiarPagina(pagina) {
   borrarPokemonesAnteriores();
   const paginaActual = pagina;
   const POKEMONES_POR_PAGINA = 20;
@@ -26,7 +36,7 @@ function cambiarPagina(pagina) {
       } = respuestaPokemon;
 
       cargarDatosPokemon(
-        mayusculaEnPrimaLetra(nombrePokemon),
+        mayusculaEnPrimeraLetra(nombrePokemon),
         tipos.map((tipo) => tipo.type.name),
         urlSprite,
         id,
@@ -36,7 +46,7 @@ function cambiarPagina(pagina) {
   }
 }
 
-document.querySelector('.pagination').onclick = function manejarClickPaginador(e) {
+export function manejarClickPaginador(e) {
   let indiceClickado = e.target.dataset.indice; // Pagina a la que el usuario quiere ir
 
   if (!indiceClickado) { return; }
@@ -47,7 +57,7 @@ document.querySelector('.pagination').onclick = function manejarClickPaginador(e
   actualizarIndicePaginas(indiceClickado);
   actualizarInterfaz(indiceClickado);
   cambiarPagina(indiceClickado);
-};
+}
 
 /*
     3  4  [5]  6  7 click en 3.

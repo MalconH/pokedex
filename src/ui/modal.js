@@ -1,10 +1,12 @@
-// Modal
-document.querySelector('.cartas').onclick = function (e) {
+import obtenerPokemon from '../pokeapi.js';
+import { decimetrosAM, hectogramosAKG, mayusculaEnPrimeraLetra } from '../utilidades.js';
+
+export default function manejarClickCarta(e) {
   const idPokemon = Number(e.target.getAttribute('data-pokemon-id'));
   if (idPokemon !== 0) {
     mostrarModalPokemon(idPokemon);
   }
-};
+}
 
 function mostrarModalPokemon(idPokemon) {
   const modalPokemon = new bootstrap.Modal(document.querySelector('#modal-pokemon'), {});
@@ -27,7 +29,7 @@ function mostrarModalPokemon(idPokemon) {
     } = pokemon;
 
     cargarDatosModal(
-      mayusculaEnPrimaLetra(nombre),
+      mayusculaEnPrimeraLetra(nombre),
       urlImagen,
       tipos.map(((tipo) => tipo.type.name)),
       hectogramosAKG(pesoEnHectogramos),

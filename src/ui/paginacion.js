@@ -3,6 +3,39 @@ let indiceActual = 1;
 const INDICE_MINIMO = 1;
 const INDICE_MAXIMO = 99;
 
+function cambiarPagina(pagina) {
+  borrarPokemonesAnteriores();
+  const paginaActual = pagina;
+  const POKEMONES_POR_PAGINA = 20;
+  const offset = POKEMONES_POR_PAGINA * (paginaActual - 1);
+
+  crearCartasVacias(20);
+
+  for (let i = 0; i < POKEMONES_POR_PAGINA; i++) {
+    const idPokemon = i + 1 + offset;
+    obtenerPokemon(idPokemon).then((respuestaPokemon) => {
+      const {
+        id,
+        name: nombrePokemon,
+        types: tipos,
+        sprites: {
+          other: {
+            'official-artwork': { front_default: urlSprite },
+          },
+        },
+      } = respuestaPokemon;
+
+      cargarDatosPokemon(
+        mayusculaEnPrimaLetra(nombrePokemon),
+        tipos.map((tipo) => tipo.type.name),
+        urlSprite,
+        id,
+        i,
+      );
+    });
+  }
+}
+
 document.querySelector('.pagination').onclick = function manejarClickPaginador(e) {
   let indiceClickado = e.target.dataset.indice; // Pagina a la que el usuario quiere ir
 

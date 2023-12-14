@@ -58,7 +58,7 @@ describe('Testeando Pokedex', () => {
     comprobarDatosModal(ID_POKEMON_2);
   });
 
-  it.only('El paginador funciona correctamente', () => {
+  it('El paginador funciona correctamente', () => {
     cy.get('nav .page-link.active').as('paginaSeleccionada')
       .should('have.text', '1');
     cy.get("[data-indice='anterior']")
@@ -149,7 +149,7 @@ function verificarCartasEnPagina(nroPagina) {
       cy.get('@cartaActual')
         .find('img')
         .should('have.attr', 'src', urlImagenPokemon)
-        .should('have.attr', 'alt', `Arte original del pokemon ${nombrePokemon}`);
+        .should('have.attr', 'alt', `Arte oficial del Pokemon ${mayusculaEnPrimeraLetra(nombrePokemon)}`);
 
       cy.wrap(tiposPokemon).each((tipoPokemon) => {
         cy.get('@cartaActual')

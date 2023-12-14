@@ -1,3 +1,5 @@
+import { decimetrosAM, hectogramosAKG, mayusculaEnPrimeraLetra } from '../../src/utilidades.js';
+
 describe('Testeando Pokedex', () => {
   const POKEMONES_POR_PAGINA = 20;
   beforeEach(() => {
@@ -209,14 +211,6 @@ function comprobarDatosModal(idPokemon) {
       .find('.special-defense')
       .should('contain.text', datosPokemon.estadisticas['special-defense']);
   });
-}
-
-function hectogramosAKG(hectogramo) {
-  return hectogramo / 10;
-}
-
-function decimetrosAM(decimetros) {
-  return decimetros / 10;
 }
 
 /* function comprobarDatosCartaPokemon($carta, id, nombre, tipos) {

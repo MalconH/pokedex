@@ -3,7 +3,8 @@ import { decimetrosAM, hectogramosAKG, mayusculaEnPrimeraLetra } from '../utilid
 
 function resetearClasesTiposPokemonModal() {
   document.querySelectorAll('.pokemon-tipo').forEach((tipo) => {
-    tipo.className = 'pokemon-tipo badge bg-secondary';
+    const clonTipo = tipo;
+    clonTipo.className = 'pokemon-tipo badge bg-secondary';
   });
 }
 

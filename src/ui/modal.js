@@ -52,7 +52,7 @@ function mostrarModalPokemon(idPokemon) {
   // y da error porque no está declarada en este archivo
   /* global bootstrap */
   const modalPokemon = new bootstrap.Modal(document.querySelector('#modal-pokemon'), {});
-  const $modal = modalPokemon._element;
+  const $modal = document.querySelector('.modal');
 
   obtenerPokemon(idPokemon).then((pokemon) => {
     // Desempaco el JSON a constantes:

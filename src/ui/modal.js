@@ -9,7 +9,6 @@ function resetearClasesTiposPokemonModal() {
 
 function cargarDatosModal(nombre, imagen, tipos, pesoKG, alturaMetros, estadisticas, modal) {
   const $titulo = modal.querySelector('.modal-title');
-  const $cuerpo = modal.querySelector('.modal-body');
   const $tiposPokemon = modal.querySelectorAll('.pokemon-tipo');
   const $imagen = document.querySelector('.pokemon-imagen');
 

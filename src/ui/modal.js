@@ -48,6 +48,9 @@ function cargarDatosModal(nombre, imagen, tipos, pesoKG, alturaMetros, estadisti
 }
 
 function mostrarModalPokemon(idPokemon) {
+  // para que ESLint tome a bootstrap como una variable global, que lo es, pero viene via CDN
+  // y da error porque no está declarada en este archivo
+  /* global bootstrap */
   const modalPokemon = new bootstrap.Modal(document.querySelector('#modal-pokemon'), {});
   const $modal = modalPokemon._element;
 

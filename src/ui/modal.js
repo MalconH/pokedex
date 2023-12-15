@@ -1,51 +1,10 @@
 import obtenerPokemon from '../pokeapi.js';
 import { decimetrosAM, hectogramosAKG, mayusculaEnPrimeraLetra } from '../utilidades.js';
 
-export default function manejarClickCarta(e) {
-  const idPokemon = Number(e.target.getAttribute('data-pokemon-id'));
-  if (idPokemon !== 0) {
-    mostrarModalPokemon(idPokemon);
-  }
-}
-
-function mostrarModalPokemon(idPokemon) {
-  const modalPokemon = new bootstrap.Modal(document.querySelector('#modal-pokemon'), {});
-  const $modal = modalPokemon._element;
-
-  obtenerPokemon(idPokemon).then((pokemon) => {
-    // Desempaco el JSON a constantes:
-
-    const {
-      name: nombre,
-      sprites: {
-        other: {
-          'official-artwork': { front_default: urlImagen },
-        },
-      },
-      types: tipos,
-      weight: pesoEnHectogramos,
-      height: alturaEnDecimetros,
-      stats: estadisticas,
-    } = pokemon;
-
-    cargarDatosModal(
-      mayusculaEnPrimeraLetra(nombre),
-      urlImagen,
-      tipos.map(((tipo) => tipo.type.name)),
-      hectogramosAKG(pesoEnHectogramos),
-      decimetrosAM(alturaEnDecimetros),
-      estadisticas.map((estadistica) => {
-        const nuevaEstadistica = {};
-
-        // El key:value es nombre_estadistica:valor_estadistica, p ej: hp: 50
-        nuevaEstadistica[estadistica.stat.name] = estadistica.base_stat;
-        return nuevaEstadistica;
-      }).flat(),
-      $modal,
-    );
+function resetearClasesTiposPokemonModal() {
+  document.querySelectorAll('.pokemon-tipo').forEach((tipo) => {
+    tipo.className = 'pokemon-tipo badge bg-secondary';
   });
-
-  modalPokemon.show();
 }
 
 function cargarDatosModal(nombre, imagen, tipos, pesoKG, alturaMetros, estadisticas, modal) {
@@ -88,8 +47,49 @@ function cargarDatosModal(nombre, imagen, tipos, pesoKG, alturaMetros, estadisti
   $titulo.textContent = nombre;
 }
 
-function resetearClasesTiposPokemonModal() {
-  document.querySelectorAll('.pokemon-tipo').forEach((tipo) => {
-    tipo.className = 'pokemon-tipo badge bg-secondary';
+function mostrarModalPokemon(idPokemon) {
+  const modalPokemon = new bootstrap.Modal(document.querySelector('#modal-pokemon'), {});
+  const $modal = modalPokemon._element;
+
+  obtenerPokemon(idPokemon).then((pokemon) => {
+    // Desempaco el JSON a constantes:
+
+    const {
+      name: nombre,
+      sprites: {
+        other: {
+          'official-artwork': { front_default: urlImagen },
+        },
+      },
+      types: tipos,
+      weight: pesoEnHectogramos,
+      height: alturaEnDecimetros,
+      stats: estadisticas,
+    } = pokemon;
+
+    cargarDatosModal(
+      mayusculaEnPrimeraLetra(nombre),
+      urlImagen,
+      tipos.map(((tipo) => tipo.type.name)),
+      hectogramosAKG(pesoEnHectogramos),
+      decimetrosAM(alturaEnDecimetros),
+      estadisticas.map((estadistica) => {
+        const nuevaEstadistica = {};
+
+        // El key:value es nombre_estadistica:valor_estadistica, p ej: hp: 50
+        nuevaEstadistica[estadistica.stat.name] = estadistica.base_stat;
+        return nuevaEstadistica;
+      }).flat(),
+      $modal,
+    );
   });
+
+  modalPokemon.show();
+}
+
+export default function manejarClickCarta(e) {
+  const idPokemon = Number(e.target.getAttribute('data-pokemon-id'));
+  if (idPokemon !== 0) {
+    mostrarModalPokemon(idPokemon);
+  }
 }

@@ -36,7 +36,6 @@ function cambiarIndiceActivo(indice) {
 
 function bloquearItemPaginacion(indice) {
   const $item = document.querySelector(`[data-indice="${indice}"]`);
-  console.log($item);
   $item.classList.add('disabled');
 }
 

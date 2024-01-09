@@ -1,4 +1,4 @@
-import { mayusculaEnPrimeraLetra } from './utilidades.js';
+import { capitalizarPrimeraLetra } from './utilidades.js';
 
 export function crearCartasVacias(cantidad) {
   for (let i = 0; i < cantidad; i++) {
@@ -35,7 +35,7 @@ export function cargarDatosPokemon(nombre, tipos, urlSprite, id, indice) {
   $imagen.alt = `Arte oficial del Pokemon ${nombre}`;
   $imagen.src = urlSprite;
 
-  $nombre.textContent = mayusculaEnPrimeraLetra(nombre);
+  $nombre.textContent = capitalizarPrimeraLetra(nombre);
 
   tipos.forEach((tipo, i) => {
     $tipos[i].textContent = tipo;

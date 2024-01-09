@@ -1,5 +1,5 @@
 import obtenerPokemon from '../pokeapi.js';
-import { decimetrosAM, hectogramosAKG, mayusculaEnPrimeraLetra } from '../utilidades.js';
+import { convertirDecimetrosAMetros, convertirHectogramosAKilogramo, capitalizarPrimeraLetra } from '../utilidades.js';
 
 function resetearClasesTiposPokemonModal() {
   document.querySelectorAll('.pokemon-tipo').forEach((tipo) => {
@@ -55,8 +55,6 @@ function mostrarModalPokemon(idPokemon) {
   const $modal = document.querySelector('.modal');
 
   obtenerPokemon(idPokemon).then((pokemon) => {
-    // Desempaco el JSON a constantes:
-
     const {
       name: nombre,
       sprites: {
@@ -71,11 +69,11 @@ function mostrarModalPokemon(idPokemon) {
     } = pokemon;
 
     cargarDatosModal(
-      mayusculaEnPrimeraLetra(nombre),
+      capitalizarPrimeraLetra(nombre),
       urlImagen,
       tipos.map(((tipo) => tipo.type.name)),
-      hectogramosAKG(pesoEnHectogramos),
-      decimetrosAM(alturaEnDecimetros),
+      convertirHectogramosAKilogramo(pesoEnHectogramos),
+      convertirDecimetrosAMetros(alturaEnDecimetros),
       estadisticas.map((estadistica) => {
         const nuevaEstadistica = {};
 

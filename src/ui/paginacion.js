@@ -6,7 +6,7 @@ import {
 
 import obtenerPokemon from '../pokeapi.js';
 
-import { mayusculaEnPrimeraLetra } from '../utilidades.js';
+import { capitalizarPrimeraLetra } from '../utilidades.js';
 
 let indicePaginas = [1, 2, 3, 4, 5];
 let indiceActual = 1;
@@ -102,7 +102,7 @@ export function cambiarPagina(pagina) {
       } = respuestaPokemon;
 
       cargarDatosPokemon(
-        mayusculaEnPrimeraLetra(nombrePokemon),
+        capitalizarPrimeraLetra(nombrePokemon),
         tipos.map((tipo) => tipo.type.name),
         urlSprite,
         id,

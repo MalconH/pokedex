@@ -6,8 +6,6 @@ import {
 
 import obtenerPokemon from '../pokeapi.js';
 
-import { capitalizarPrimeraLetra } from '../utilidades.js';
-
 let indicePaginas = [1, 2, 3, 4, 5];
 let indiceActual = 1;
 const INDICE_MINIMO = 1;
@@ -87,29 +85,13 @@ export function cambiarPagina(pagina) {
 
   crearCartasVacias(20);
 
-  for (let i = 0; i < POKEMONES_POR_PAGINA; i++) {
+  const $cartasVacias = document.querySelectorAll('.carta');
+  $cartasVacias.forEach((carta, i) => {
     const idPokemon = i + 1 + offset;
     obtenerPokemon(idPokemon).then((respuestaPokemon) => {
-      const {
-        id,
-        name: nombrePokemon,
-        types: tipos,
-        sprites: {
-          other: {
-            'official-artwork': { front_default: urlSprite },
-          },
-        },
-      } = respuestaPokemon;
-
-      cargarDatosPokemon(
-        capitalizarPrimeraLetra(nombrePokemon),
-        tipos.map((tipo) => tipo.type.name),
-        urlSprite,
-        id,
-        i,
-      );
+      cargarDatosPokemon(respuestaPokemon, carta);
     });
-  }
+  });
 }
 
 export function manejarClickPaginador(e) {

@@ -24,22 +24,33 @@ export function crearCartasVacias(cantidad) {
   }
 }
 
-export function cargarDatosPokemon(nombre, tipos, urlSprite, id, indice) {
-  const $carta = document.querySelectorAll('.carta')[indice];
+export function cargarDatosPokemon(pokemon, $carta) {
+  const {
+    id,
+    name: nombrePokemon,
+    types: tipos,
+    sprites: {
+      other: {
+        'official-artwork': { front_default: urlSprite },
+      },
+    },
+  } = pokemon;
+
   const $imagen = $carta.querySelector('.card-img-top');
   const $nombre = $carta.querySelector('.card-title');
   const $tipos = $carta.querySelectorAll('.card-subtitle .badge');
 
   $carta.setAttribute('data-pokemon-id', id);
 
-  $imagen.alt = `Arte oficial del Pokemon ${nombre}`;
+  $imagen.alt = `Arte oficial del Pokemon ${capitalizarPrimeraLetra(nombrePokemon)}`;
   $imagen.src = urlSprite;
 
-  $nombre.textContent = capitalizarPrimeraLetra(nombre);
+  $nombre.textContent = capitalizarPrimeraLetra(nombrePokemon);
 
   tipos.forEach((tipo, i) => {
-    $tipos[i].textContent = tipo;
-    $tipos[i].classList.add(tipo);
+    const nombreTipo = tipo.type.name;
+    $tipos[i].textContent = nombreTipo;
+    $tipos[i].classList.add(nombreTipo);
   });
 }
 

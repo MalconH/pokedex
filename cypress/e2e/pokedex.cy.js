@@ -1,4 +1,4 @@
-import { decimetrosAM, hectogramosAKG, mayusculaEnPrimeraLetra } from '../../src/utilidades.js';
+import { convertirDecimetrosAMetros, convertirHectogramosAKilogramo, capitalizarPrimeraLetra } from '../../src/utilidades.js';
 
 describe('Testeando Pokedex', () => {
   const POKEMONES_POR_PAGINA = 20;
@@ -151,7 +151,7 @@ function verificarCartasEnPagina(nroPagina) {
       cy.get('@cartaActual')
         .find('img')
         .should('have.attr', 'src', urlImagenPokemon)
-        .should('have.attr', 'alt', `Arte oficial del Pokemon ${mayusculaEnPrimeraLetra(nombrePokemon)}`);
+        .should('have.attr', 'alt', `Arte oficial del Pokemon ${capitalizarPrimeraLetra(nombrePokemon)}`);
 
       cy.wrap(tiposPokemon).each((tipoPokemon) => {
         cy.get('@cartaActual')
@@ -175,11 +175,11 @@ function comprobarDatosModal(idPokemon) {
 
     cy.get('.modal')
       .find('.pokemon-peso')
-      .should('contain.text', hectogramosAKG(datosPokemon.peso));
+      .should('contain.text', convertirHectogramosAKilogramo(datosPokemon.peso));
 
     cy.get('.modal')
       .find('.pokemon-altura')
-      .should('contain.text', decimetrosAM(datosPokemon.altura));
+      .should('contain.text', convertirDecimetrosAMetros(datosPokemon.altura));
 
     cy.wrap(datosPokemon.tipos).each((tipo) => {
       cy.get('.modal')

@@ -1,4 +1,4 @@
-import obtenerPokemon from '../pokeapi.js';
+import obtenerPokemon from '../servicios.js';
 import { convertirDecimetrosAMetros, convertirHectogramosAKilogramo, capitalizarPrimeraLetra } from '../utilidades.js';
 
 function resetearClasesTiposPokemonModal() {
@@ -22,9 +22,9 @@ function cargarDatosModal(nombre, imagen, tipos, pesoKG, alturaMetros, estadisti
   document.querySelector('.pokemon-altura').textContent = `${alturaMetros}m`;
 
   // Carga estadisticas
-  estadisticas.forEach(((estadistica) => {
-    const nombreEstadistica = Object.keys(estadistica);
-    const valorEstadistica = estadistica[nombreEstadistica];
+  Object.keys(estadisticas).forEach(((estadistica) => {
+    const nombreEstadistica = estadistica;
+    const valorEstadistica = estadisticas[nombreEstadistica];
 
     document.querySelector(`.${nombreEstadistica}-valor`).textContent = valorEstadistica;
   }));
@@ -55,32 +55,13 @@ function mostrarModalPokemon(idPokemon) {
   const $modal = document.querySelector('.modal');
 
   obtenerPokemon(idPokemon).then((pokemon) => {
-    const {
-      name: nombre,
-      sprites: {
-        other: {
-          'official-artwork': { front_default: urlImagen },
-        },
-      },
-      types: tipos,
-      weight: pesoEnHectogramos,
-      height: alturaEnDecimetros,
-      stats: estadisticas,
-    } = pokemon;
-
     cargarDatosModal(
-      capitalizarPrimeraLetra(nombre),
-      urlImagen,
-      tipos.map(((tipo) => tipo.type.name)),
-      convertirHectogramosAKilogramo(pesoEnHectogramos),
-      convertirDecimetrosAMetros(alturaEnDecimetros),
-      estadisticas.map((estadistica) => {
-        const nuevaEstadistica = {};
-
-        // El key:value es nombre_estadistica:valor_estadistica, p ej: hp: 50
-        nuevaEstadistica[estadistica.stat.name] = estadistica.base_stat;
-        return nuevaEstadistica;
-      }).flat(),
+      capitalizarPrimeraLetra(pokemon.nombre),
+      pokemon.urlImagen,
+      pokemon.tipos,
+      convertirHectogramosAKilogramo(pokemon.pesoEnHectogramos),
+      convertirDecimetrosAMetros(pokemon.alturaEnDecimetros),
+      pokemon.estadisticas,
       $modal,
     );
   });

@@ -4,7 +4,7 @@ import {
   cargarDatosPokemon,
 } from '../ui.js';
 
-import obtenerPokemon from '../pokeapi.js';
+import obtenerPokemon from '../servicios.js';
 
 let indicePaginas = [1, 2, 3, 4, 5];
 let indiceActual = 1;

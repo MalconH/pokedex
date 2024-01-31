@@ -12,3 +12,30 @@ export function convertirDecimetrosAMetros(decimetros) {
   const decimetrosEnUnMetro = 10;
   return decimetros / decimetrosEnUnMetro;
 }
+
+export function desempacarPokemon(pokemon) {
+  const estadisticas = {};
+  const tipos = pokemon.types.map(((indiceTipo) => indiceTipo.type.name));
+  const {
+    id,
+    name: nombre,
+    sprites: {
+      other: {
+        'official-artwork': { front_default: urlImagen },
+      },
+    },
+    weight: pesoEnHectogramos,
+    height: alturaEnDecimetros,
+  } = pokemon;
+
+  pokemon.stats.forEach((indiceEstadistica) => {
+    const nombreEstadistica = indiceEstadistica.stat.name;
+    const valorEstadistica = indiceEstadistica.base_stat;
+
+    estadisticas[nombreEstadistica] = valorEstadistica;
+  });
+
+  return {
+    id, nombre, urlImagen, tipos, pesoEnHectogramos, alturaEnDecimetros, estadisticas,
+  };
+}

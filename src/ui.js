@@ -1,4 +1,4 @@
-import { capitalizarPrimeraLetra } from './utilidades.js';
+import capitalizarPrimeraLetra from './utilidades.js';
 
 export function crearCartasVacias(cantidad) {
   for (let i = 0; i < cantidad; i++) {
@@ -24,33 +24,21 @@ export function crearCartasVacias(cantidad) {
   }
 }
 
-export function cargarDatosPokemon(pokemon, $carta) {
-  const {
-    id,
-    name: nombrePokemon,
-    types: tipos,
-    sprites: {
-      other: {
-        'official-artwork': { front_default: urlSprite },
-      },
-    },
-  } = pokemon;
-
+export function cargarDatosPokemon(datosPokemon, $carta) {
   const $imagen = $carta.querySelector('.card-img-top');
   const $nombre = $carta.querySelector('.card-title');
   const $tipos = $carta.querySelectorAll('.card-subtitle .badge');
 
-  $carta.setAttribute('data-pokemon-id', id);
+  $carta.setAttribute('data-pokemon-id', datosPokemon.id);
 
-  $imagen.alt = `Arte oficial del Pokemon ${capitalizarPrimeraLetra(nombrePokemon)}`;
-  $imagen.src = urlSprite;
+  $imagen.alt = `Arte oficial del Pokemon ${capitalizarPrimeraLetra(datosPokemon.nombre)}`;
+  $imagen.src = datosPokemon.urlImagen;
 
-  $nombre.textContent = capitalizarPrimeraLetra(nombrePokemon);
+  $nombre.textContent = capitalizarPrimeraLetra(datosPokemon.nombre);
 
-  tipos.forEach((tipo, i) => {
-    const nombreTipo = tipo.type.name;
-    $tipos[i].textContent = nombreTipo;
-    $tipos[i].classList.add(nombreTipo);
+  datosPokemon.tipos.forEach((tipo, i) => {
+    $tipos[i].textContent = tipo;
+    $tipos[i].classList.add(tipo);
   });
 }
 
